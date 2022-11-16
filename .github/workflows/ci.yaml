@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [main]
+
+jobs:
+  java_lint:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout the code base
+      - uses: actions/checkout@v2
+
+      - name: Lint Code Base
+        uses: github/super-linter/slim@v4
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          IGNORE_GENERATED_FILES: true

@@ -1,0 +1,249 @@
+* {
+    box-sizing: border-box;
+    word-break: break-all;
+    text-align: center;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+  
+  .vl {
+    border-left: 1px solid #006eff;
+    height: 1300px;
+  }
+/* 
+  .glow:hover{
+	background: crimson;
+	box-shadow: 0 0 45px 0 crimson, 0 20px 25px 0 rgba(0, 0, 0, 0.4);
+  } */	
+
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
+ html, body {
+	 width: 100%;
+	 height: 100%;
+}
+ body {
+	 background: #006eff;
+}
+ .containerr {
+	 position: absolute;
+	 margin: auto;
+	 /* top: 0;
+	 left: 0;
+	 right: 0;
+	 bottom: 0; */
+	 width: 100%;
+	 height: 100px;
+}
+ .containerr .search {
+	 position: absolute;
+	 margin: auto;
+	 top: 0;
+	 right: 0;
+	 bottom: 0;
+	 left: 0;
+	 width: 50px;
+	 height: 50px;
+	 background: #006eff;
+	 border-radius: 50%;
+	 transition: all 1s;
+	 z-index: 4;
+	 box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4);
+}
+ .containerr .search:hover {
+	 cursor: pointer;
+}
+.uni:hover {
+	cursor: pointer;
+}
+ .containerr .search::before {
+	 content: "";
+	 position: absolute;
+	 margin: auto;
+	 top: 12px;
+	 right: 0;
+	 bottom: 0;
+	 left: 12px;
+	 width: 12px;
+	 height: 2px;
+	 background: white;
+	 transform: rotate(45deg);
+	 transition: all 0.5s;
+}
+ .containerr .search::after {
+	 content: "";
+	 position: absolute;
+	 margin: auto;
+	 top: -5px;
+	 right: 0;
+	 bottom: 0;
+	 left: -5px;
+	 width: 15px;
+	 height: 15px;
+	 border-radius: 50%;
+	 border: 2px solid white;
+	 transition: all 0.5s;
+}
+ .containerr input {
+	 position: absolute;
+	 margin: auto;
+	 top: 0;
+	 right: 0;
+	 bottom: 0;
+	 left: 0;
+	 width: 50px;
+	 height: 50px;
+	 outline: none;
+	 border: none;
+	 background: #006eff;
+	 color: white;
+	 text-shadow: 0 0 10px #006eff;
+	 padding: 0 80px 0 20px;
+	 border-radius: 30px;
+	 box-shadow: 0 0 25px 0 #006eff, 0 20px 25px 0 rgba(0, 0, 0, 0.2);
+	 transition: all 1s;
+	 opacity: 0;
+	 z-index: 5;
+	 font-weight: bolder;
+	 letter-spacing: 0.1em;
+}
+ .containerr input:hover {
+	 cursor: pointer;
+}
+ .containerr input:focus {
+	 width: 500px;
+	 opacity: 1;
+	 cursor: text;
+}
+ .containerr input:focus ~ .search {
+	 right: -450px;
+	 background: #151515;
+	 z-index: 6;
+}
+ .containerr input:focus ~ .search::before {
+	 top: 0;
+	 left: 0;
+	 width: 25px;
+}
+ .containerr input:focus ~ .search::after {
+	 top: 0;
+	 left: 0;
+	 width: 25px;
+	 height: 2px;
+	 border: none;
+	 background: white;
+	 border-radius: 0%;
+	 transform: rotate(-45deg);
+}
+ .containerr input::placeholder {
+	 color: white;
+	 opacity: 0.5;
+	 font-weight: bolder;
+}
+
+/* BOX */
+.box::before {  
+	transform: scaleX(0);
+	transform-origin: bottom right;
+  }
+  
+  .box:hover::before {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+  }
+  
+  .box::before {
+	content: " ";
+	display: block;
+	position: absolute;
+	padding:5px;
+	top: 0; right: 0; bottom: 0; left: 0;
+	inset: 0 0 0 0;
+	background: #207ffaab;
+	z-index: -1;
+	transition: transform 1.5s ease;
+  }
+  
+  .box {
+	position: relative;
+  }
+  
+  html {
+	block-size: 100%;
+	inline-size: 100%;
+  }
+  
+  body {
+	min-block-size: 100%;
+	min-inline-size: 100%;
+	margin: 0;
+	box-sizing: border-box;
+	display: grid;
+	place-content: center;
+	font-family: system-ui, sans-serif;
+  }
+  
+  @media (orientation: landscape) {
+	body {
+	  grid-auto-flow: column;
+	}
+  }
+  
+  .stars-outer {
+	display: inline-block;
+	position: relative;
+	font-family: FontAwesome;
+  }
+   
+  .stars-outer::before {
+	content: "\f006 \f006 \f006 \f006 \f006";
+  }
+   
+  .stars-inner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 0;
+  }
+   
+  .stars-inner::before {
+	content: "\f005 \f005 \f005 \f005 \f005";
+	color: #006eff;
+  }
+
+  .boxComm input {
+	opacity: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.boxComm p {
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.boxComm input:focus ~ label {
+	outline: -webkit-focus-ring-color auto 5px;
+}
+.boxComm input:checked + p {
+	-webkit-line-clamp: unset;
+}
+.boxComm input:checked ~ label {
+	display: none;
+}
+
+
+
+.visible {
+	height: 3em;
+	width: 10em;
+  }
+
+  .input{
+	  width: 80%;
+
+  }

@@ -1,0 +1,19 @@
+nav{
+    font-size:20px;
+    padding:15px;
+    background-color: white;
+}
+
+.uniGrade{
+    text-decoration: solid;
+    font-size: 30px;
+}
+
+.navbar-white .nav-item.active .nav-link,
+.navbar-white .nav-item .nav-link:active,
+.navbar-white .nav-item .nav-link:focus,
+.navbar-white .nav-item:hover .nav-link {
+    color: #006eff;
+    border-bottom: 1px solid #006eff
+}
+

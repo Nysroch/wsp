@@ -1,0 +1,90 @@
+<div class="container-fluid" style="padding: 20px;">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10" (click)="routeUni(uni.universityID);">
+            <div class="box">
+                <h4 style="text-align: left; "><img style="margin-right: 10px; border-radius: 10px;" src={{uni.iconUrl}}
+                        width="75" height="75"> {{uni.name}} </h4>
+                <div style="text-align: left; color: rgb(0, 0, 0); padding-left: 93px; margin-top: -30px;">
+                    <span style="text-align: left;">
+                    </span>University rating: <span>{{uni.rating}}/5</span> Average subject rating:
+                    <span>{{uni.subjectRating === null ? "-" : uni.subjectRating}}</span> <span
+                        style="  float: right; margin-right: 5px;">{{uni.emailDomain}}</span>
+                </div><br>
+                <!-- <h3 style="border-bottom: 1px solid rgb(88, 75, 75); text-align: left; padding-left: 125px; padding-right: 125px;"></h3> -->
+                <!-- <p>{{uni.description}}</p>    -->
+                <h3
+                    style="border-bottom: 1px solid #006eff; text-align: left; padding-left: 125px; padding-right: 125px;">
+                </h3>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <h1> <i class="fa-solid fa-book" style="  padding-top: 50px;"></i> My comments</h1>
+            <div style="text-align: right; cursor: pointer;">
+                <span style=" display: inline;" (click)="sortUpC()">
+                    <span *ngIf="sortByUpC === 0">
+                        <i class="fa-solid fa-arrow-down" style="padding: 10px;"></i><i class="fa-solid fa-thumbs-up"></i>
+                    </span>
+                    <span *ngIf="sortByUpC === 1 ">
+                        <i class="fa-solid fa-arrow-down" style="padding: 10px; color:#006eff;"></i><i class="fa-solid fa-thumbs-up"></i>
+                    </span>
+                    <span *ngIf="sortByUpC === 2 ">
+                        <i class="fa-solid fa-arrow-up" style="padding: 10px; color:#006eff;"></i><i class="fa-solid fa-thumbs-up"></i>
+                    </span>
+                </span>
+                <span style=" display: inline;" (click)="sortStC()">
+                    <span *ngIf="sortByStC === 0">
+                        <i class="fa-solid fa-arrow-down" style="padding: 10px;"></i><i class="fa-solid fa-star"></i>
+                    </span>
+                    <span *ngIf="sortByStC === 1 ">
+                        <i class="fa-solid fa-arrow-down" style="padding: 10px; color:#006eff;"></i><i class="fa-solid fa-star"></i>
+                    </span>
+                    <span *ngIf="sortByStC === 2 ">
+                        <i class="fa-solid fa-arrow-up" style="padding: 10px; color:#006eff;"></i><i class="fa-solid fa-star"></i>
+                    </span>
+                </span>
+                <span style=" display: inline;" (click)="sortDateC()">
+                    <span *ngIf="sortByDateC === 0">
+                        <i class="fa-solid fa-arrow-down" style="padding: 10px;"></i><i class="fa-solid fa-calendar"></i>
+                    </span>
+                    <span *ngIf="sortByDateC === 1 ">
+                        <i class="fa-solid fa-arrow-down" style="padding: 10px; color:#006eff;"></i><i class="fa-solid fa-calendar"></i>
+                    </span>
+                    <span *ngIf="sortByDateC === 2 ">
+                        <i class="fa-solid fa-arrow-up" style="padding: 10px; color:#006eff;"></i><i class="fa-solid fa-calendar"></i>
+                    </span>
+                </span>
+            </div>
+            <h3 style="border-bottom: 1px solid #006eff; text-align: left; padding-left: 125px;"></h3>
+
+            <ul   style="left: 0px;" >
+                <li class="box" *ngFor="let comm of com" >
+                    <span (click)="routeComm(comm.universityID, comm.subjectID);">
+                    <p style="text-align: left;"> {{comm.description}}</p>
+                    <div style="text-align: left;">
+                            <i style="padding-right: 5px; color:black" class="fa-solid fa-thumbs-up"></i>
+                        <span style="padding-right: 15px;">{{comm.upvote}}</span>
+                        <div class="stars-outer">
+                            <div class="stars-inner" [style.width.%]="((comm.rating)/5)*100"></div>
+                        </div>
+                    </div>
+                    <span style="  float: right; margin-top: -25px; ">
+                        {{comm.universityName}},{{comm.subjectName}}
+                        {{datum(comm.dateEdited)}}
+                    </span>
+                    <h3
+                        style="border-bottom: 1px solid #006eff; text-align: left; padding-left: 125px; padding-right: 125px;">
+                    </h3>
+                </span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+</div>

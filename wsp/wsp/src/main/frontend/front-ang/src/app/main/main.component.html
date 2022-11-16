@@ -1,0 +1,176 @@
+
+<br><br><br>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-1">
+		</div>
+		<div class="col-6">
+			<h1> <i class="fa-solid fa-graduation-cap"> </i> Universities</h1>
+			<br>
+			<div class="containerr cent">
+				<input [(ngModel)]="mymodel"  (input)="valuechange($event)" type="text" placeholder="Search...">
+				<span style="display:none">{{mymodel}}</span>
+				<div class="search"></div><br>
+			</div>
+			<br><br><br><br>
+			<div style="text-align: right; cursor: pointer;">
+			<span   (click)="sortAa()">
+				<span   *ngIf="sortByAa === 0" style=" display: inline;">
+					<i class="fa-solid fa-arrow-down" style="padding: 10px;  color:black;"></i>Aa
+				</span>
+				<span *ngIf="sortByAa === 1 ">
+					<i class="fa-solid fa-arrow-down" style="padding: 10px; color: #006eff;"></i>Aa 
+				</span>
+				<span *ngIf="sortByAa === 2 ">
+					<i class="fa-solid fa-arrow-up" style="padding: 10px; color: #006eff"></i>Aa 
+				</span>
+				 
+			</span>
+			<span style=" display: inline;"  (click)="sortSt()">
+				<span   *ngIf="sortBySt === 0" >
+					<i class="fa-solid fa-arrow-down" style="padding: 10px;"></i><i class="fa-solid fa-star"></i>
+				</span>
+				<span *ngIf="sortBySt === 1 ">
+					<i class="fa-solid fa-arrow-down" style="padding: 10px; color: #006eff;"></i><i class="fa-solid fa-star"></i>
+				</span>
+				<span *ngIf="sortBySt === 2 ">
+					<i class="fa-solid fa-arrow-up" style="padding: 10px; color: #006eff;"></i><i class="fa-solid fa-star"></i>
+				</span>
+			</span>
+		</div>
+
+			<h3 style="border-bottom: 1px solid #006eff; text-align: left; padding-left: 125px;"></h3>
+
+			<ul class="uni ">
+				<li *ngFor="let uni of uniAll" class="box" (click)="routeUni(uni.universityID);" >
+					<h4 style="text-align: left; "><img style="margin-right: 10px; border-radius: 10px;"
+							src={{uni.iconUrl}} width="75" height="75"> {{uni.name}} </h4>
+					<div style="text-align: left; color: rgb(0, 0, 0); padding-left: 93px; margin-top: -30px;">
+						<span style="text-align: left;">
+						</span>University rating: <span>{{uni.rating}}/5</span> Average subject rating: <span
+							>{{uni.subjectRating === null ? "-" : uni.subjectRating}}</span> <span
+							style="  float: right; margin-right: 5px;">{{uni.emailDomain}}</span></div><br>
+					<h3
+						style="border-bottom: 1px solid #006eff; text-align: left; padding-left: 125px; padding-right: 125px;">
+					</h3>
+				</li>
+				<p style="margin-top: 30px;" *ngIf="uniAll.length == 0 ">
+					<strong >No universities match your search term.</strong>
+				 </p>
+			</ul>
+
+		</div>
+		<!-- <div class="col-1" >
+		<div class="vl"></div> 
+	</div> -->
+		<div class="col-5" class="vl" style="width: 37.5%; position: fixed;  text-align: right!important; right: 0; margin-right: 40px; ">
+			<h1> <i class="fa-solid fa-book" style="padding-bottom: 50px;"></i> Top subjects</h1>
+			<ul class="subj">
+				<li *ngFor="let subj of top3Sub" (click)="routeSubj(subj.subjectID);" class="box" style="cursor: pointer;">
+					<h4 style="text-align: left; ">{{subj.name}} </h4>
+					<div style="text-align: left; color: rgb(0, 0, 0); "><span style="text-align: left;"></span>
+						<div class="stars-outer">
+							<div class="stars-inner" [style.width.%]="((subj.rating)/5)*100"></div>
+						</div>
+						<br> 
+						Number of comments: <span>{{subj.commentNumber}}</span><span
+							style="  float: right; ">{{subj.semester}}. semestar, {{subj.major}}
+
+							<span *ngFor="let uniAll of uniAllTemp">
+								<span *ngIf="uniAll.universityID == subj.universityID ">  ({{uniAll.emailDomain}}) </span>
+							</span>
+						</span>
+					</div><br>
+					<h3
+						style="border-bottom: 1px solid #006eff; text-align: left; padding-left: 125px; padding-right: 125px; margin-top: -20px;">
+					</h3>
+				</li>
+
+				<h1 style="padding-bottom: 10px; padding-top: 30px;"> <i class="fa-solid fa-comment"></i> Comment of the day</h1>
+				<!-- <p style="text-align: left;" > {{commDay.description}}</p> -->
+
+				<span *ngIf="ifBigComment()">
+					<div class="boxComm">
+						<input type="checkbox" id="expanded">
+						<p style="text-align: left;"> {{commDay.description}}</p>
+						<label for="expanded" role="button" style="text-decoration: underline; cursor: pointer;">Read more</label>
+					</div>
+				</span>
+				<span *ngIf="!ifBigComment()">
+					<p style="text-align: left;"> {{commDay.description}}</p>
+				</span>
+
+				<div style="text-align: left;" >
+					<span *ngIf="isUserLoggedIn()">
+						<span *ngIf="commDay.upvoted">
+							<i style="padding-right: 5px; color: #006eff; cursor:pointer;" class="fa-solid fa-thumbs-up" (click)="upvoteTopComm(commDay.commentID)"></i>
+						</span>
+						<span *ngIf="!commDay.upvoted">
+							<i style="padding-right: 5px; color:black; cursor:pointer;" class="fa-solid fa-thumbs-up" (click)="upvoteTopComm(commDay.commentID)"></i>
+						</span>
+					</span>
+					<span *ngIf="!isUserLoggedIn()">
+						<i style="padding-right: 5px; color:black" class="fa-solid fa-thumbs-up"></i>
+					</span>
+					<span style="padding-right: 15px;">{{commDay.upvote}}</span>
+					<div class="stars-outer" >
+						<div class="stars-inner" [style.width.%]="((commDay.rating)/5)*100"></div>
+					</div>
+					
+					<span *ngIf="isUserLoggedIn()">
+						<span *ngIf="commDay.reported" title="Report comment" class="visible">
+							<i  data-target="#exampleModal" class="show" style="padding-left: 10px; padding-right: 10px;  color: #006eff;" class="fa-regular fa-flag" ></i>
+						</span>
+						<span *ngIf="!commDay.reported" title="Report comment" class="visible">
+							<i data-toggle="modal" data-target="#exampleModal" class="show" style="padding-left: 10px; padding-right: 10px; cursor:pointer; color:black;" class="fa-regular fa-flag" ></i>
+						</span><i style="padding-left: 10px; visibility: hidden;" class="fa-solid fa-pen-to-square"></i> <i style="padding-left: 10px; visibility: hidden;" class="fa-solid fa-trash"></i>
+					</span>
+				
+				</div>
+				<span style="  float: right; margin-top: -25px; ">
+					{{datum(commDay.dateEdited)}} 
+				</span>
+				<br>
+				<span style="  float: left; margin-top: -25px; ">{{commDay.universityName}}, {{commDay.subjectName}}
+				</span>
+			</ul>
+		</div>
+	</div>
+</div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content" style="color:rgb(255, 255, 255); background-color: black;">
+		<div class="">
+		  <h5 class="modal-title" id="exampleModalLabel"  style="padding:10px" >Reporting a comment</h5>
+		</div>
+		<textarea placeholder="Enter reason of report "style="text-align: left; background-color: #1A1E23; color:white" name="Text1" cols="30" rows="5" [(ngModel)]="report.reason" required></textarea>
+		<br>
+		<span>{{warningtext}}</span>
+		<div class="modal-footer" >
+			<span *ngIf="report.reason == undefined || report.reason == ''">
+				<button type="button" class="btn btn-secondary" (click)="textarea()" >Submit</button>
+			</span>
+			<span *ngIf="report.reason != undefined && report.reason != ''">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="reportTopComm()" data-toggle="modal" data-target="#exampleModal2"  >Submit</button>
+			</span>
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="textareaclear()">Cancel</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+   <!-- Modal2 -->
+   <div id="exampleModal2" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content" style="color:rgb(255, 255, 255); background-color: black;">
+		<div class="modal-header">
+		  <h5 class="modal-title" style="padding:10px">Report submitted successfully!</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="textareaclear()">Close</button>
+	  </div>
+	</div>
+  </div>
